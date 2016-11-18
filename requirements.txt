@@ -1,0 +1,9 @@
+ - Propuesta app a desarrollar 
+
+
+- App que tenga dos tipos de usuarios (admin y usuarios normal) CREAR -API -vistas
+- los admin puedan ver la info de usuarios y borrarla o editarla CREAR -vistas -cambiar reglas en backend -restringir=jwt
+
+EVENTOS = usuarios Y admin crean eventos, los usuarios y admin agregan invitados que son solamente la información del invitado la cual es: mesa, nombre, acompañantes:nombre
+
+Vista eventos : en la pagina algo sencillo que se muestren todos los invitados, que se puedan filtrar por mesas o por nombre.
