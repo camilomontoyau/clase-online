@@ -1,0 +1,243 @@
+{
+	"swagger":"2.0",
+	"info":{
+		"description":"Documentation para la rest API del Software Académico",
+		"version":"0.3.0",
+		"title":"Software Académico API",
+		"termsOfService":"http://swagger.io/terms/",
+		"contact":{
+			"email":"camilomontoya2@gmail.com"
+		},
+		"license":{
+			"name":"Apache 2.0",
+			"url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+		}
+	},
+	"host":"localhost:3000",
+	"basePath":"/api/v1",
+	"tags":[
+		{
+			"name":"usuarios",
+			"description":"todas las operaciones con los usuarios"
+		}
+	],
+	"schemes":[
+		"http"
+	],
+	"paths":{
+		"/usuarios": {
+			"get": {
+				"tags": [
+					"usuarios"
+				],
+				"summary": "obtener usuarios",
+				"description": "Me devuelve un array con todos los usuarios",
+				"operationId": "todos-los-usuarios",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"404": {
+						"description": "No encontró el recurso."
+					},
+					"200": {
+						"description": "encontró los recursos"
+					}
+				},
+				"parameters": [
+					{
+						"in":"query",
+						"name":"email",
+						"description":"email",
+						"type":"string"
+					},
+					{
+						"in":"query",
+						"name":"tipo",
+						"description":"tipo de usuario",
+						"type":"string"
+					}
+				]
+			},
+			"post": {
+				"tags": [
+					"usuarios"
+				],
+				"summary": "crear un usuario",
+				"description": "Me devuelve el usuario creado",
+				"operationId": "crear-usuarios",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "objeto usuarios",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/usuario"
+						}
+					}
+				],
+				"responses": {
+					"404": {
+						"description": "No encontró el recurso."
+					},
+					"201": {
+						"description": "el cliente fue creado satisfactoriamente"
+					}
+				}
+			}
+		},
+		"/usuarios/{idusuario}":{
+			"put":{
+				"tags":[
+					"usuarios"
+				],
+				"summary":"modifica un usuario",
+				"description":"Me devuelve el usuario modificado",
+				"operationId":"modificar-usuarios",
+				"consumes":[
+					"application/json"
+				],
+				"produces":[
+					"application/json"
+				],
+				"parameters":[
+					{
+						"name":"idusuario",
+						"in":"path",
+						"required":true,
+						"description":"id del usuario a modificar",
+						"type":"string"
+					},
+					{
+						"in":"body",
+						"name":"body",
+						"description":"objeto usuarios",
+						"required":true,
+						"schema":{
+							"$ref":"#/definitions/usuario"
+						}
+					}
+				],
+				"responses":{
+					"404":{
+						"description":"No encontró el recurso."
+					},
+					"203":{
+						"description":"el usuario fue modificado satisfactoriamente"
+					}
+				}
+			},
+			"get":{
+				"tags":[
+					"usuarios"
+				],
+				"summary":"modifica un usuario",
+				"description":"Me devuelve el usuario modificado",
+				"operationId":"obtener-usuario",
+				"consumes":[
+					"application/json"
+				],
+				"produces":[
+					"application/json"
+				],
+				"parameters":[
+					{
+						"name":"idusuario",
+						"in":"path",
+						"required":true,
+						"description":"id del usuario a modificar",
+						"type":"string"
+					}
+				],
+				"responses":{
+					"404":{
+						"description":"No encontró el recurso."
+					},
+					"200":{
+						"description":"el usuario fue modificado satisfactoriamente"
+					}
+				}
+			},
+			"delete":{
+				"tags":[
+					"usuarios"
+				],
+				"summary":"elimina un usuario",
+				"description":"",
+				"operationId":"eliminar-usuarios",
+				"consumes":[
+					"application/json"
+				],
+				"produces":[
+					"application/json"
+				],
+				"parameters":[
+					{
+						"name":"idusuario",
+						"in":"path",
+						"required":true,
+						"description":"id del usuario a modificar",
+						"type":"string"
+					}
+				],
+				"responses":{
+					"404":{
+						"description":"No encontró el recurso."
+					},
+					"200":{
+						"description":"el usuario fue eliminado satisfactoriamente"
+					}
+				}
+			}
+
+		}
+	},
+	"securityDefinitions":{
+		"api_key":{
+			"type":"apiKey",
+			"name":"api_key",
+			"in":"header"
+		}
+	},
+	"definitions":{
+		"usuario":{
+			"type":"object",
+			"required":[
+				"tipo",
+				"password",
+				"email"
+			],
+			"properties":{
+				"tipo":{
+					"type":"string",
+					"example":"admin"
+				},
+				"password":{
+					"type":"string",
+					"example":"admin12345"
+				},
+				"email":{
+					"type":"string",
+					"example":"admin@test.com"
+				}
+			},
+			"xml":{
+				"name":"Pet"
+			}
+		}
+	},
+	"externalDocs":{
+		"description":"Find out more about Swagger",
+		"url":"http://swagger.io"
+	}
+}
